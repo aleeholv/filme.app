@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Filmes em Streaming</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+  <div class="icones-topo">
+    <a href="https://youtube.com/@filmeideal-resenhas?si=n2Yta0HUAafJyEMM" target="_blank" class="icone-link">
+      <img src="logo.yt.png" alt="YouTube" />
+    </a>
+    <a href="https://discord.gg/ABCrduZR" target="_blank" class="icone-link">
+      <img src="discord.png" alt="Discord" />
+    </a>
+  </div>
+  <div class="logo-centralizada">
+    <img src="logo.png.png" alt="Logo do trabalho" class="logo">
+
+  </header>
+  
+    </div>
+  </header>
+  
+  <header>
+    <div class="barra-busca">
+      <div class="center-container">
+      <input type="text" id="buscarFilme" placeholder="Buscar filme por nome..." />
+      <button id="buscar">.</buton>
+    </div>
+
+    <div class="filtros-scroll" id="carrossel-filtros">
+    
+      <button id="btn-desc">Mais populares</button>
+      <button id="btn-asc">Menos populares</button>
+      <button id="todos">Todos os filmes</button>
+
+      
+
+       <!-- Filtro por Gêneros -->
+       <div id="generos">
+        <button data-genero="Ação">Ação</button>
+        <button data-genero="Comédia">Comédia</button>
+        <button data-genero="Drama">Drama</button>
+        <button data-genero="Terror">Terror</button>
+        <button data-genero="Romance">Romance</button>
+
+    </div>
+
+    <div class="filtros">
+      <label for="classificacao">Classificação:</label>
+      <select id="classificacao">
+        <option value="">Todas</option>
+        <option value="10">10+</option>
+        <option value="12">12+</option>
+        <option value="14">14+</option>
+        <option value="16">16+</option>
+        <option value="18">18+</option>
+      </select>
+
+
+    </div>
+    <label for="inicio">De:</label>
+    <input type="number" id="inicio" placeholder="Ano inicial" min="1700" max="2099" />
+    
+    <label for="fim">Até:</label>
+    <input type="number" id="fim" placeholder="Ano final" min="1700" max="2099" />
+    </div>
+
+    
+    <div id="modalFilme" class="modal">
+      <div class="modal-conteudo">
+        <span id="fecharModal" class="fechar">&times;</span>
+        <div id="detalhesFilme"></div>
+      </div>
+      <script>
+        const carrossel = document.getElementById("carrossel-filtros");
+        let autoScroll;
+      
+        function iniciarAutoScroll() {
+          const scrollMax = carrossel.scrollWidth - carrossel.clientWidth;
+      
+          autoScroll = setInterval(() => {
+            if (carrossel.scrollLeft >= scrollMax) {
+              carrossel.scrollLeft = 0;
+            } else {
+              carrossel.scrollLeft += 10;
+            }
+          }, 20); // quanto menor, mais rápido
+        }
+      
+        iniciarAutoScroll();
+      
+        // Se o usuário rolar manualmente, pausa o auto scroll
+        carrossel.addEventListener("mouseenter", () => clearInterval(autoScroll));
+        carrossel.addEventListener("mouseleave", iniciarAutoScroll);
+        document.addEventListener("DOMContentLoaded", () => {
+  exibirFilmes(filmes); // Exibe todos os filmes ao carregar
+});
+      </script>
+      
+    </div>
+  
+    </div>
+
+  </header>
+
+  <main>
+    <div id="filmesContainer"></div>
+  </main>
+  <script src="filme.js"></script> <!-- renomeie conforme o nome do seu JS -->
+</body>
+</html>

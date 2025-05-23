@@ -1,0 +1,325 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #000634, #1d0f85);
+  color: #fff;
+}
+
+#filmesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  padding: 20px;
+}
+.filme {
+  width: 160px;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  background-color: #021733;
+  border-radius: 12px;
+}
+
+.filme:hover {
+  transform: scale(1.03);
+}
+
+.filme img {
+  width: 100%;
+  height: 220px; /* Tamanho fixo para todas as imagens */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.filme strong {
+  font-size: 1rem;
+  color: #ff5555;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.plataformas {
+  margin-top: 6px;
+  font-size: 0.7rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.plataformas img {
+  height: 16px;
+  margin: 2px;
+  vertical-align: middle;
+}
+
+.outrasPlataformas {
+  margin-top: 4px;
+  text-align: center;
+}
+
+.verMais {
+  color: #ff5555;
+  cursor: pointer;
+  margin-top: 6px;
+  font-size: 0.7rem;
+  text-decoration: underline;
+}
+
+/* Filtros e botões */
+#generos button,
+#btn-desc,
+#btn-asc,
+#todos {
+  background-color: #392f32;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  margin: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(62, 62, 62, 0.4);
+  transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
+}
+
+#generos button:hover,
+#btn-desc:hover,
+#btn-asc:hover,
+#todos:hover {
+  background: linear-gradient(90deg, #b00710, #7a0209);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(176, 7, 16, 0.4);
+}
+
+/* Inputs e selects com visual mais moderno */
+input, select {
+  background-color: #b3194c;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 8px 10px;
+  margin: 6px;
+  border-radius: 6px;
+  font-size: 14px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #b00710;
+  box-shadow: 0 0 4px #b00710;
+}
+
+/* Estilos para as abas no rodapé */
+#rodape {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #021733;
+  padding: 10px 0;
+  text-align: center;
+  z-index: 10;
+}
+
+#rodape a {
+  color: #fff;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+#rodape a:hover {
+  color: #ff55c3;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 40px; /* ↓ Reduzido */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.modal-conteudo {
+  background-color: #1c1c1c;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 800px;
+  max-height: 85vh; /* ↓ Altura máxima do modal */
+  overflow-y: auto;  /* Scroll se necessário */
+  color: white;
+  position: relative;
+}
+
+.modal img {
+  width: 100%;
+  max-height: 300px; /* ↓ Altura da imagem reduzida */
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+
+.link-filme {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #e50914;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.link-filme:hover {
+  background-color: #b00710;
+}
+
+.icones-topo {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 9999;
+}
+
+.icone-link img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+
+.icone-link img:hover {
+  transform: scale(1.15);
+  filter: brightness(1.2);
+}
+
+@keyframes pulseBorder {
+  0% {
+    border-color:#b3194c;
+    box-shadow: 0 0 10px #b3194c;
+  }
+  50% {
+    border-color: #b3194c;
+    box-shadow: 0 0 30px #b3194c;
+  }
+  100% {
+    border-color: #b3194c;
+    box-shadow: 0 0 10px #b3194c;
+  }
+}
+
+#buscarFilme {
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 2px solid #b3194c;
+  border-radius: 10px;
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+  width: 220px;
+  outline: none;
+  animation: pulseBorder 2s infinite;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px red; /* luz inicial */
+  
+}
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  margin-bottom: 40px; /* ajuste o valor como quiser */
+}
+
+.logo-centralizada {
+  display: flex;
+  align-items: center;
+  padding-left: 47%; /* Espaço da esquerda */
+  height: 30vh; /* Altura menor */
+  gap: 15px; /* Espaço entre logo e texto */
+}
+
+.logo {
+  height: 180px; /* Tamanho menor */
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.titulo {
+  font-size: 50px; /* Fonte menor */
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 4px #021733;
+  margin: 0;
+}
+
+.filtros-scroll {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 10px;
+  padding-bottom: 5px;
+}
+
+/* Estiliza a barra de rolagem (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  height: 8px; /* para barras horizontais */
+  width: 8px;  /* para barras verticais */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #021733;
+  border-radius: 4px;
+}
+
+/* Para o Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #6e0f2e transparent;
+}
+
+
+.filtros-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 0, 0, 0.6); /* vermelho translúcido */
+  border-radius: 3px;
+}
+
+.filtros-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#buscar {
+  display: none;
+}
+
+.filtros-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.filtros-scroll::-webkit-scrollbar {
+  display: none;
+}
